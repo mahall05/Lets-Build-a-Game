@@ -4,6 +4,7 @@
 package com.tutorial.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public abstract class GameObject {
 	
@@ -19,6 +20,7 @@ public abstract class GameObject {
 	
 	public abstract void tick();     // These are two things that are abstract so they will need to be set individually when a new object is created
 	public abstract void render(Graphics g);
+	public abstract Rectangle getBounds();
 	
 	// Getters and Setter methods:
 	// Can change position by calling these methods by using the parameters
