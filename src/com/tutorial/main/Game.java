@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public Game() {
 		handler = new Handler();
+		this.addKeyListener(new KeyInput(handler));     // This just tells the game to start "listening" for key presses
 		
 		new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
 		
@@ -27,6 +28,7 @@ public class Game extends Canvas implements Runnable{
 		r = new Random();
 		
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player));
+		handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
 		
 	}
 
@@ -46,6 +48,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void run() {     // The game loop
+		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;     // The amount of ticks/second
 		double ns = 1000000000 / amountOfTicks;     // The amount of nanoticks/tick
@@ -66,7 +69,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
