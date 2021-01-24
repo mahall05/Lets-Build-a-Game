@@ -38,7 +38,7 @@ public class Player extends GameObject {
 			
 			GameObject tempObject = handler.object.get(i);     // Create a temporary object. Gets each instance of the for loop
 			
-			if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy) {     // tempObject is now basic enemy
+			if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy || tempObject.getId() == ID.SmartEnemy) {     // tempObject is now basic enemy
 				if(getBounds().intersects(tempObject.getBounds())){     // If Player intersects with the boundaries of the enemy (tempObject)
 					//collision code
 					HUD.HEALTH -= 2;     // Health goes down 2
