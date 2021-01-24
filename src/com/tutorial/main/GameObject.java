@@ -8,11 +8,11 @@ import java.awt.Rectangle;
 
 public abstract class GameObject {
 	
-	protected int x, y;     // Protected means can only be accessed by objects that inherit GameObject
+	protected float x, y;     // Protected means can only be accessed by objects that inherit GameObject
 	protected ID id;
-	protected int velX, velY;     // Variables that control speed
+	protected float velX, velY;     // Variables that control speed
 	
-	public GameObject(int x, int y, ID id) {     // When a new GameObject is created, it will need these parameters
+	public GameObject(float x, float y, ID id) {     // When a new GameObject is created, it will need these parameters
 		this.x = x;
 		this.y = y;
 		this.id = id;
@@ -31,10 +31,10 @@ public abstract class GameObject {
 	public void setY(int y) {
 		this.y = y;
 	}
-	public int getX() {
+	public float getX() {
 		return x;
 	}
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	public void setId(ID id) {
@@ -49,10 +49,10 @@ public abstract class GameObject {
 	public void setVelY(int velY) {
 		this.velY = velY;
 	}
-	public int getVelX() {
+	public float getVelX() {
 		return velX;
 	}
-	public int getVelY() {
+	public float getVelY() {
 		return velY;
 	}
 	
