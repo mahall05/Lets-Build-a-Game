@@ -42,10 +42,15 @@ public class Player extends GameObject {
 				if(getBounds().intersects(tempObject.getBounds())){     // If Player intersects with the boundaries of the enemy (tempObject)
 					//collision code
 					HUD.HEALTH -= 2;     // Health goes down 2
-				}
-					
-					
+				}					
 			}
+			else if(tempObject.getId() == ID.EnemyBoss) {
+				if(getBounds().intersects(tempObject.getBounds())) {
+					HUD.HEALTH -= 1000;
+				}
+			}
+			
+			
 		}
 	}
 

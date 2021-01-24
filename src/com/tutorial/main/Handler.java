@@ -28,6 +28,19 @@ public class Handler {
 		
 	}
 	
+	public void clearEnemies() {
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			
+			if(tempObject.getId() == ID.Player) {
+				
+				object.clear();
+				addObject(new Player((int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this));
+			}
+		}
+
+	}
+	
 	public void addObject(GameObject object) {     // This handles adding objects to the list
 		this.object.add(object);
 	}
