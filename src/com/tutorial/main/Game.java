@@ -15,6 +15,8 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;     // The game runs within this thread
 	private boolean running = false;
 	
+	public static boolean paused = false;
+	
 	private Random r;
 	private Handler handler;
 	private HUD hud;
@@ -34,7 +36,7 @@ public class Game extends Canvas implements Runnable{
 		handler = new Handler();
 		hud = new HUD();
 		menu = new Menu(this, handler, hud);
-		this.addKeyListener(new KeyInput(handler));     // This just tells the game to start "listening" for key presses
+		this.addKeyListener(new KeyInput(handler, this));     // This just tells the game to start "listening" for key presses
 		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
@@ -98,21 +100,27 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void tick() {
-		handler.tick();
+		
 		if(gameState == STATE.Game) {
-			hud.tick();
-			spawner.tick();
-			if(HUD.HEALTH <= 0) {
-				HUD.HEALTH = 100;
-				gameState = STATE.End;
-				handler.clearEnemies();
-				for(int i = 0; i < 20; i++) {
-					handler.addObject(new MenuParticle(r.nextInt(WIDTH - 16), r.nextInt(HEIGHT - 16), ID.MenuParticle, handler));
+			
+			if(!paused) {
+				hud.tick();
+				spawner.tick();
+				handler.tick();
+				if(HUD.HEALTH <= 0) {
+					HUD.HEALTH = 100;
+					gameState = STATE.End;
+					handler.clearEnemies();
+					for(int i = 0; i < 20; i++) {
+						handler.addObject(new MenuParticle(r.nextInt(WIDTH - 16), r.nextInt(HEIGHT - 16), ID.MenuParticle, handler));
+					}
 				}
-				
 			}
+			
+			
 		}else if(gameState == STATE.Menu || gameState == STATE.End) {
 			menu.tick();
+			handler.tick();
 		}
 		
 		
@@ -131,6 +139,11 @@ public class Game extends Canvas implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
+		
+		if(paused) {
+			g.setColor(Color.white);
+			g.drawString("PAUSED", 100, 100);
+		}
 		
 		if(gameState == STATE.Game) {
 			hud.render(g);
