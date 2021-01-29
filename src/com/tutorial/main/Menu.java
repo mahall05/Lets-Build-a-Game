@@ -13,10 +13,12 @@ public class Menu extends MouseAdapter {
 	
 	private Game game;
 	private Handler handler;
+	private HUD hud;
 	private Random r = new Random();
 	
-	public Menu(Game game, Handler handler) {
+	public Menu(Game game, Handler handler, HUD hud) {
 		this.game = game;
+		this.hud = hud;
 		this.handler = handler;
 	}
 	
@@ -29,6 +31,7 @@ public class Menu extends MouseAdapter {
 			if(mouseOver(mx, my, 210, 150, 200, 64)) {
 				game.gameState = STATE.Game;
 				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
+				handler.clearEnemies();
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 			}
 			
@@ -50,6 +53,18 @@ public class Menu extends MouseAdapter {
 			if(mouseOver(mx, my, 210, 350, 200, 64)) {
 				game.gameState = STATE.Menu;
 				return;
+			}
+		}
+		
+		//try again button for game over screen
+		if(game.gameState == STATE.End) {
+			if(mouseOver(mx, my, 210, 350, 200, 64)) {
+				game.gameState = STATE.Game;
+				hud.setLevel(1);
+				hud.setScore(0);
+				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
+				handler.clearEnemies();
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 			}
 		}
 		
@@ -79,7 +94,7 @@ public class Menu extends MouseAdapter {
 			
 			g.setFont(fnt);
 			g.setColor(Color.white);
-			g.drawString("Menu", 245, 70);
+			g.drawString("Wave", 245, 70);
 			
 			g.setFont(fnt2);
 			g.drawRect(210, 150, 200, 64);
@@ -104,7 +119,22 @@ public class Menu extends MouseAdapter {
 			
 			g.setFont(fnt2);
 			g.drawRect(210, 350, 200, 64);
-			g.drawString("Back", 280, 390);
+			g.drawString("Back", 275, 390);
+		}else if(game.gameState == STATE.End) {
+			Font fnt = new Font("arial", 1, 50);
+			Font fnt2 = new Font("arial", 1, 30);
+			Font fnt3 = new Font("arial", 1, 20);
+			
+			g.setFont(fnt);
+			g.setColor(Color.white);
+			g.drawString("Game Over", 180, 70);
+			
+			g.setFont(fnt3);
+			g.drawString("You lost with a score of: " + hud.getScore(), 175, 200);
+			
+			g.setFont(fnt2);
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Try Again", 245, 392);
 		}
 	}
 }
