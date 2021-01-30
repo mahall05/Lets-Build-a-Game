@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
@@ -37,7 +39,17 @@ public class Game extends Canvas implements Runnable{
 	
 	public static STATE gameState = STATE.Menu;
 	
+	public static BufferedImage sprite_sheet;
+	
 	public Game() {
+		
+		BufferedImageLoader loader = new BufferedImageLoader();
+		
+		sprite_sheet = loader.loadImage("/sprite_sheet.png");
+
+		
+		
+		
 		handler = new Handler();
 		hud = new HUD();
 		menu = new Menu(this, handler, hud);

@@ -3,11 +3,14 @@ package com.tutorial.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class SmartEnemy extends GameObject {
 	
 	private Handler handler;
 	private GameObject player;
+	
+	private BufferedImage enemy_image;
 
 	public SmartEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -18,7 +21,9 @@ public class SmartEnemy extends GameObject {
 			if(handler.object.get(i).getId() == ID.Player) player = handler.object.get(i); 
 		}
 		
-
+		SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+		
+		enemy_image = ss.grabImage(1, 2, 16, 16);
 
 	}
 	
@@ -44,12 +49,13 @@ public class SmartEnemy extends GameObject {
 		if(y <= 0 || y >= Game.HEIGHT - 64) velY *= -1; 
 		if(x <= 0 || x >= Game.WIDTH - 32) velX *= -1; 
 		
-		handler.addObject(new Trail(x, y, ID.Trail, Color.green, 16, 16, 0.02f, handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.green, 16, 16, 0.02f, handler));
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.green);
-		g.fillRect((int)x, (int)y, 16, 16);
+		//g.setColor(Color.green);
+		//g.fillRect((int)x, (int)y, 16, 16);
+		g.drawImage(enemy_image, (int) x, (int) y, null);
 
 	}
 

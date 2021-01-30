@@ -3,11 +3,15 @@ package com.tutorial.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class EnemyBoss extends GameObject {
 	
 	private Handler handler;
+	
+	private BufferedImage enemy_image;
+	
 	Random r = new Random();
 	
 	private int timer = 72;
@@ -20,6 +24,10 @@ public class EnemyBoss extends GameObject {
 		
 		velX = 0;
 		velY = 2;
+		
+		SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+		
+		enemy_image = ss.grabImage(2, 2, 96, 96);
 
 	}
 	
@@ -57,9 +65,9 @@ public class EnemyBoss extends GameObject {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect((int)x, (int)y, 96, 96);
-
+		//g.setColor(Color.red);
+		//g.fillRect((int)x, (int)y, 96, 96);
+		g.drawImage(enemy_image, (int) x, (int) y, null);
 	}
 
 }
