@@ -9,6 +9,7 @@ import java.util.Random;
 
 import com.tutorial.main.Game.STATE;
 
+
 public class Menu extends MouseAdapter {
 	
 	private Game game;
@@ -56,7 +57,7 @@ public class Menu extends MouseAdapter {
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 				
 				game.diff = 0;
-				shop.setPrice = 100;
+				shop.setPrice = 1000;
 				
 			}
 			
@@ -68,7 +69,7 @@ public class Menu extends MouseAdapter {
 				handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 				
 				game.diff = 1;
-				shop.setPrice = 150;
+				shop.setPrice = 1500;
 			}
 			
 			//back button

@@ -10,7 +10,7 @@ public class EnemyBoss extends GameObject {
 	
 	private Handler handler;
 	
-	private BufferedImage enemy_image;
+	//private BufferedImage enemy_image;
 	
 	Random r = new Random();
 	
@@ -25,9 +25,9 @@ public class EnemyBoss extends GameObject {
 		velX = 0;
 		velY = 2;
 		
-		SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+		//SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
 		
-		enemy_image = ss.grabImage(2, 2, 96, 96);
+		//enemy_image = ss.grabImage(2, 2, 96, 96);
 
 	}
 	
@@ -61,13 +61,13 @@ public class EnemyBoss extends GameObject {
 		//if(y <= 0 || y >= Game.HEIGHT - 64) velY *= -1; 
 		if(x <= 0 || x >= Game.WIDTH - 104) velX *= -1; 
 		
-		//handler.addObject(new Trail(x, y, ID.Trail, Color.red, 96, 96, 0.008f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, Color.red, 96, 96, 0.008f, handler));
 	}
 
 	public void render(Graphics g) {
-		//g.setColor(Color.red);
-		//g.fillRect((int)x, (int)y, 96, 96);
-		g.drawImage(enemy_image, (int) x, (int) y, null);
+		g.setColor(Color.red);
+		g.fillRect((int)x, (int)y, 96, 96);
+		//g.drawImage(enemy_image, (int) x, (int) y, null);
 	}
 
 }

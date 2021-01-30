@@ -1,3 +1,4 @@
+/*
 package com.tutorial.main;
 
 import java.awt.image.BufferedImage;
@@ -16,3 +17,4 @@ public class SpriteSheet {
 	}
 
 }
+*/

@@ -25,11 +25,13 @@ public class Shop extends MouseAdapter {
 		this.hud = hud;
 		this.game = game;
 		
-		if(game.diff == 0) {
-			setPrice = 100;
-		}else if(game.diff == 1) {
-			setPrice = 150;
-		}
+		//if(game.diff == 0) {
+			//setPrice = 1000;
+		//}else if(game.diff == 1) {
+			//setPrice = 1500;
+		//}
+		
+		setPrice = 1000;
 		
 		B1 = setPrice;
 		B2 = setPrice;

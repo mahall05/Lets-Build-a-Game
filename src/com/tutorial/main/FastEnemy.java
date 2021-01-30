@@ -9,7 +9,7 @@ public class FastEnemy extends GameObject {
 	
 	private Handler handler;
 	
-	private BufferedImage enemy_image;
+	//private BufferedImage enemy_image;
 
 	public FastEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -19,9 +19,9 @@ public class FastEnemy extends GameObject {
 		velX = 2;
 		velY = 9;
 		
-		SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+		//SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
 		
-		enemy_image = ss.grabImage(3, 1, 16, 16);
+		//enemy_image = ss.grabImage(3, 1, 16, 16);
 
 	}
 	
@@ -36,13 +36,13 @@ public class FastEnemy extends GameObject {
 		if(y <= 0 || y >= Game.HEIGHT - 64) velY *= -1; 
 		if(x <= 0 || x >= Game.WIDTH - 32) velX *= -1; 
 		
-		//handler.addObject(new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.02f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.02f, handler));
 	}
 
 	public void render(Graphics g) {
-		//g.setColor(Color.cyan);
-		//g.fillRect((int)x, (int)y, 16, 16);
-		g.drawImage(enemy_image, (int) x, (int) y, null);
+		g.setColor(Color.cyan);
+		g.fillRect((int)x, (int)y, 16, 16);
+		//g.drawImage(enemy_image, (int) x, (int) y, null);
 
 	}
 

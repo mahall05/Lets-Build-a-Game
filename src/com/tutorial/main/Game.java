@@ -44,13 +44,12 @@ public class Game extends Canvas implements Runnable{
 	public static BufferedImage sprite_sheet;
 	
 	public Game() {
-		
+
+		/*
 		BufferedImageLoader loader = new BufferedImageLoader();
 		
 		sprite_sheet = loader.loadImage("/sprite_sheet.png");
-
-		
-		
+		*/
 		
 		handler = new Handler();
 		hud = new HUD();
