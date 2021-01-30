@@ -15,11 +15,13 @@ public class Menu extends MouseAdapter {
 	private Handler handler;
 	private HUD hud;
 	private Random r = new Random();
+	private Shop shop;
 	
-	public Menu(Game game, Handler handler, HUD hud) {
+	public Menu(Game game, Handler handler, HUD hud, Shop shop) {
 		this.game = game;
 		this.hud = hud;
 		this.handler = handler;
+		this.shop = shop;
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -54,6 +56,8 @@ public class Menu extends MouseAdapter {
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 				
 				game.diff = 0;
+				shop.setPrice = 100;
+				
 			}
 			
 			//hard button
@@ -64,6 +68,7 @@ public class Menu extends MouseAdapter {
 				handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 				
 				game.diff = 1;
+				shop.setPrice = 150;
 			}
 			
 			//back button
@@ -88,6 +93,9 @@ public class Menu extends MouseAdapter {
 				game.gameState = STATE.Menu;
 				hud.setLevel(1);
 				hud.setScore(0);
+				handler.spd = 5;
+				hud.bounds = 0;
+				
 			}
 		}
 		

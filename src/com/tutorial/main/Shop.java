@@ -6,18 +6,34 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import com.tutorial.main.Game.STATE;
+
 public class Shop extends MouseAdapter {
 	
 	Handler handler;
 	HUD hud;
+	Game game;
 	
-	private int B1 = 1000;
-	private int B2 = 1000;
-	private int B3 = 1000;
+	public int setPrice;
 	
-	public Shop(Handler handler, HUD hud) {
+	private int B1;
+	private int B2;
+	private int B3;
+	
+	public Shop(Handler handler, HUD hud, Game game) {
 		this.handler = handler;
 		this.hud = hud;
+		this.game = game;
+		
+		if(game.diff == 0) {
+			setPrice = 100;
+		}else if(game.diff == 1) {
+			setPrice = 150;
+		}
+		
+		B1 = setPrice;
+		B2 = setPrice;
+		B3 = setPrice;
 		
 	}
 	
@@ -50,45 +66,49 @@ public class Shop extends MouseAdapter {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		int mx = e.getX();
-		int my = e.getY();
+		if(Game.gameState == STATE.Shop) {
+			
 		
-		// box 1
-		if(mx >= 100 && mx <= 200) {
-			if(my >= 100 && my <= 180) {
-				//you've selected box 1
-				if(hud.getScore() >= B1) {
-					hud.setScore(hud.getScore() - B1);
-					B1 += 1000;	
-					hud.bounds += 20;
-					hud.HEALTH = (100 + (hud.bounds/2));
+			int mx = e.getX();
+			int my = e.getY();
+			
+			// box 1
+			if(mx >= 100 && mx <= 200) {
+				if(my >= 100 && my <= 180) {
+					//you've selected box 1
+					if(hud.getScore() >= B1) {
+						hud.setScore(hud.getScore() - B1);
+						B1 += setPrice;	
+						hud.bounds += 20;
+						hud.HEALTH = (100 + (hud.bounds/2));
+					}
 				}
 			}
-		}
-		
-		// box 2
-		if(mx >= 250 && mx <= 350) {
-			if(my >= 100 && my <= 180) {
-				//you've selected box 2
-				if(hud.getScore() >= B2) {
-					hud.setScore(hud.getScore() - B2);
-					B2 += 1000;
-					handler.spd++;
+			
+			// box 2
+			if(mx >= 250 && mx <= 350) {
+				if(my >= 100 && my <= 180) {
+					//you've selected box 2
+					if(hud.getScore() >= B2) {
+						hud.setScore(hud.getScore() - B2);
+						B2 += setPrice;
+						handler.spd++;
+					}
 				}
 			}
-		}
-				
-		// box 3
-		if(mx >= 400 && mx <= 500) {
-			if(my >= 100 && my <= 180) {
-				//you've selected box 3
-				if(hud.getScore() >= B3) {
-					hud.setScore(hud.getScore() - B3);
-					hud.HEALTH = (100 + (hud.bounds/2));
+					
+			// box 3
+			if(mx >= 400 && mx <= 500) {
+				if(my >= 100 && my <= 180) {
+					//you've selected box 3
+					if(hud.getScore() >= B3) {
+						hud.setScore(hud.getScore() - B3);
+						hud.HEALTH = (100 + (hud.bounds/2));
+					}
 				}
 			}
 		}
 		
 	}
-
+		
 }

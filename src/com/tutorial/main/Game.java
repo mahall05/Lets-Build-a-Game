@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	public static boolean paused = false;
-	public int diff = 0;
+	public int diff;
 	
 	// 0 = normal
 	// 1 = hard
@@ -54,8 +54,8 @@ public class Game extends Canvas implements Runnable{
 		
 		handler = new Handler();
 		hud = new HUD();
-		shop = new Shop(handler, hud);
-		menu = new Menu(this, handler, hud);
+		shop = new Shop(handler, hud, this);
+		menu = new Menu(this, handler, hud, shop);
 		this.addKeyListener(new KeyInput(handler, this));     // This just tells the game to start "listening" for key presses
 		this.addMouseListener(menu);
 		this.addMouseListener(shop);
