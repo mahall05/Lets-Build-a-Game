@@ -3,6 +3,8 @@ package com.tutorial.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.tutorial.main.Game.STATE;
+
 public class KeyInput extends KeyAdapter{
 	
 	private Handler handler;
@@ -31,16 +33,21 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player) {     // Only goes into the "if" statement if the object has the ID of "Player"
 				//key events for player 1
 				
-				if(key == KeyEvent.VK_W) {tempObject.setVelY(-5); keyDown[0]=true; }     // Check if we're hitting W, and move up
-				if(key == KeyEvent.VK_S) {tempObject.setVelY(5); keyDown[1]=true; }      // Check if we're hitting S, and move down
-				if(key == KeyEvent.VK_D) {tempObject.setVelX(5); keyDown[2]=true; }      // Check if we're hitting D, and move right
-				if(key == KeyEvent.VK_A) {tempObject.setVelX(-5); keyDown[3]=true; }     // Check if we're hitting A, and move left
+				if(key == KeyEvent.VK_W) {tempObject.setVelY(-handler.spd); keyDown[0]=true; }     // Check if we're hitting W, and move up
+				if(key == KeyEvent.VK_S) {tempObject.setVelY(handler.spd); keyDown[1]=true; }      // Check if we're hitting S, and move down
+				if(key == KeyEvent.VK_D) {tempObject.setVelX(handler.spd); keyDown[2]=true; }      // Check if we're hitting D, and move right
+				if(key == KeyEvent.VK_A) {tempObject.setVelX(-handler.spd); keyDown[3]=true; }     // Check if we're hitting A, and move left
 			}
 		}
 		
 		if (key == KeyEvent.VK_P) Game.paused = !Game.paused;
 		
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
+		
+		if(key == KeyEvent.VK_SPACE) {
+			if(Game.gameState == STATE.Game) Game.gameState = STATE.Shop;
+			else if(Game.gameState == STATE.Shop) Game.gameState = STATE.Game;
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {

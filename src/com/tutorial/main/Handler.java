@@ -9,6 +9,8 @@ public class Handler {
 	
 	LinkedList<GameObject> object = new LinkedList<GameObject>();     // Make a list of all the game objects in the game
 	
+	public int spd = 5;
+	
 	public void tick() {
 		for(int i = 0; i < object.size(); i++) {     // Loop through every single game object
 			GameObject tempObject = object.get(i);     // Allows us to get the ID of what object we are at
